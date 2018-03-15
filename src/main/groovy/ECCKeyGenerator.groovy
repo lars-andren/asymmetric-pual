@@ -16,32 +16,32 @@ public class ECCKeyGenerator {
 
     public static KeyPair generateKey() {
 
-        KeyPair keypair = null;
+        def keypair = null;
 
-        Random rand = new SecureRandom();
-        BigInteger bigint1 = new BigInteger(32, rand);
-        BigInteger bigint2 = new BigInteger(32, rand);
-        BigInteger bigint3 = new BigInteger(32, rand);
-        BigInteger bigint4 = new BigInteger(32, rand);
+        Random rand = new SecureRandom()
+        def bigint1 = new BigInteger(32, rand)
+        def bigint2 = new BigInteger(32, rand)
+        def bigint3 = new BigInteger(32, rand)
+        def bigint4 = new BigInteger(32, rand)
 
         byte[] randomBytes  = new byte[32];
         rand.nextBytes(randomBytes);
 
-        ECCurve curve = new ECCurve.Fp(bigint1, bigint2, bigint3);
+        ECCurve curve = new ECCurve.Fp(bigint1, bigint2, bigint3)
 
-        ECParameterSpec ecParameterSpec = new ECParameterSpec(
+        def ecParameterSpec = new ECParameterSpec(
                 curve,
                 curve.decodePoint(randomBytes),
-                bigint4);
+                bigint4)
 
         try {
-            KeyPairGenerator generator = KeyPairGenerator.getInstance("ECDSA", "BC");
-            generator.initialize(ecParameterSpec);
-            keypair = generator.generateKeyPair();
+            KeyPairGenerator generator = KeyPairGenerator.getInstance("ECDSA", "BC")
+            generator.initialize(ecParameterSpec)
+            keypair = generator.generateKeyPair()
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace()
         }
 
-        return keypair;
+        return keypair
     }
 }
