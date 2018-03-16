@@ -8,12 +8,20 @@ import static org.junit.Assert.*;
 public class ECCUtilTest extends GroovyTestCase {
 
     @Test
-    public void encrypt() throws Exception {
+    public void testEncrypt() throws Exception {
 
+        def message = "der lauf der zeit"
+
+        def keyPair = ECCKeyGenerator.generateKey()
+        ECCUtil.encrypt(message, keyPair.public)
     }
 
     @Test
-    public void decrypt() throws Exception {
+    public void testDecrypt() throws Exception {
+
+    }
+
+    public void testEncryptDecrypt() throws Exception {
 
     }
 }
