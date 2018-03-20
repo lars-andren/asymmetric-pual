@@ -16,12 +16,15 @@ public class ECCUtilTest extends GroovyTestCase {
         ECCUtil.encrypt(message, keyPair.public)
     }
 
-    @Test
-    public void testDecrypt() throws Exception {
-
-    }
-
     public void testEncryptDecrypt() throws Exception {
 
+        def message = "ohne dich"
+
+        def keyPair = ECCKeyGenerator.generateKey()
+        def secret = ECCUtil.encrypt(message, keyPair.public)
+
+        def unsecret = ECCUtil.decrypt(secret, keyPair.private)
+
+        assert message.getBytes() == unsecret
     }
 }
