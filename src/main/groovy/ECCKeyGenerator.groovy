@@ -6,9 +6,9 @@ import java.security.KeyPair
 import java.security.KeyPairGenerator
 import java.security.Security
 
-public class ECCKeyGenerator {
+class ECCKeyGenerator {
 
-    public static KeyPair generateKey() {
+    def static KeyPair generateKeypair() {
 
         Security.addProvider(new BouncyCastleProvider())
 

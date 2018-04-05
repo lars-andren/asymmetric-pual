@@ -7,23 +7,26 @@ import static org.junit.Assert.*;
  */
 public class ECCUtilTest extends GroovyTestCase {
 
+    def eccKeyGenerator = new ECCKeyGenerator()
+
     @Test
     public void testEncrypt() throws Exception {
 
         def message = "der lauf der zeit"
 
-        def keyPair = ECCKeyGenerator.generateKey()
-        ECCUtil.encrypt(message, keyPair.public)
+        def keyPair = eccKeyGenerator.generateKeypair()
+        EncryptDecryptUtil.encrypt(message, keyPair.public, "ECIES")
     }
 
+    @Test
     public void testEncryptDecrypt() throws Exception {
 
         def message = "ohne dich"
 
-        def keyPair = ECCKeyGenerator.generateKey()
-        def secret = ECCUtil.encrypt(message, keyPair.public)
+        def keyPair = eccKeyGenerator.generateKeypair()
+        def secret = EncryptDecryptUtil.encrypt(message, keyPair.public, "ECIES")
 
-        def unsecret = ECCUtil.decrypt(secret, keyPair.private)
+        def unsecret = EncryptDecryptUtil.decrypt(secret, keyPair.private, "ECIES")
 
         assert message.getBytes() == unsecret
     }
