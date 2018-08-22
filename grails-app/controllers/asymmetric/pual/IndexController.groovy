@@ -2,5 +2,8 @@ package asymmetric.pual
 
 class IndexController {
 
-    def index() { }
+    def index() {
+
+        render view: 'raceIntro'
+    }
 }
