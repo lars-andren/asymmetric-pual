@@ -9,10 +9,8 @@
         <section class="row colset-2-its">
 
             <h2>
-                Select your racers
+                Start your engines, RACE!
             </h2>
-
-
 
         </section>
     </div>
