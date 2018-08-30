@@ -14,13 +14,19 @@
 
             <g:form controller="race" action="save">
 
-                <label>Racer 1: </label>
-                <g:radio name="racer1" value="RSA"/><br/>
-                <g:radio name="racer1" value="ECC"/><br/>
+                <label>Racer 1 </label><br>
+                <g:radioGroup name="racerChoice1"
+                              labels="['RSA','ECC']"
+                              values="['RSA','ECC']" >
+                    <p>${it.label} ${it.radio}</p>
+                </g:radioGroup>
 
-                <label>Racer 2: </label>
-                <g:radio name="racer2" value="RSA"/><br/>
-                <g:radio name="racer2" value="ECC"/><br/>
+                <label>Racer 2 </label><br>
+                <g:radioGroup name="racerChoice2"
+                              labels="['RSA','ECC']"
+                              values="['RSA','ECC']" >
+                    <p>${it.label} ${it.radio}</p>
+                </g:radioGroup>
 
                 <label>Data to encrypt: </label>
                 <g:textField name="data"/><br/>
