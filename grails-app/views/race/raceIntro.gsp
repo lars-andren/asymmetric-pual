@@ -30,7 +30,7 @@
 
                 <label>Data to encrypt: </label>
                 <g:textField name="data"/><br/>
-                <g:actionSubmit value="Save"/>
+                <g:actionSubmit value="GO!"/>
             </g:form>
 
         </section>

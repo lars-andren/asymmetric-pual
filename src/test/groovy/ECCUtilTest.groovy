@@ -1,6 +1,6 @@
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import asymmetric.pual.ECCKeyGenerator
+import asymmetric.pual.EncryptDecryptUtil
+import org.junit.Test
 
 /**
  * Created by andrenlars on 16/03/18.
