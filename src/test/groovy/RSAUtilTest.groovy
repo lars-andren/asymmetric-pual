@@ -1,4 +1,4 @@
-import asymmetric.pual.EncryptDecryptUtil
+import asymmetric.pual.EncryptDecryptService
 import asymmetric.pual.RSAKeyGenerator
 import org.junit.Test
 
@@ -15,7 +15,7 @@ public class RSAUtilTest extends GroovyTestCase {
         def message = "der lauf der zeit"
 
         def keyPair = rsaKeyGenerator.generateKeypair()
-        EncryptDecryptUtil.encrypt(message, keyPair.public, "RSA")
+        EncryptDecryptService.encrypt(message, keyPair.public, "RSA")
     }
 
     @Test
@@ -24,9 +24,9 @@ public class RSAUtilTest extends GroovyTestCase {
         def message = "ohne dich"
 
         def keyPair = rsaKeyGenerator.generateKeypair()
-        def secret = EncryptDecryptUtil.encrypt(message, keyPair.public, "RSA")
+        def secret = EncryptDecryptService.encrypt(message, keyPair.public, "RSA")
 
-        def unsecret = EncryptDecryptUtil.decrypt(secret, keyPair.private, "RSA")
+        def unsecret = EncryptDecryptService.decrypt(secret, keyPair.private, "RSA")
 
         assert message.getBytes() == unsecret
     }

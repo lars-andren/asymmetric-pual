@@ -1,3 +1,5 @@
+package asymmetric.pual
+
 import javax.crypto.Cipher
 import java.security.PrivateKey
 import java.security.PublicKey
@@ -6,7 +8,7 @@ import java.security.SecureRandom
 /**
  * Created by andrenlars on 20/03/18.
  */
-class EncryptDecryptUtil {
+class EncryptDecryptService {
 
     def static byte[] encrypt(String message, PublicKey kU, String cipher) {
 

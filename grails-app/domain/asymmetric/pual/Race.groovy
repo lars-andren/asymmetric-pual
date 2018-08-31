@@ -5,6 +5,9 @@ class Race {
     Date startDate
     Date endDate
 
+    int racer1time
+    int racer2time
+
     Algorithm racer1
     Algorithm racer2
 

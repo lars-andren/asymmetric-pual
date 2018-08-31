@@ -1,5 +1,5 @@
 import asymmetric.pual.ECCKeyGenerator
-import asymmetric.pual.EncryptDecryptUtil
+import asymmetric.pual.EncryptDecryptService
 import org.junit.Test
 
 /**
@@ -15,7 +15,7 @@ public class ECCUtilTest extends GroovyTestCase {
         def message = "der lauf der zeit"
 
         def keyPair = eccKeyGenerator.generateKeypair()
-        EncryptDecryptUtil.encrypt(message, keyPair.public, "ECIES")
+        EncryptDecryptService.encrypt(message, keyPair.public, "ECIES")
     }
 
     @Test
@@ -24,9 +24,9 @@ public class ECCUtilTest extends GroovyTestCase {
         def message = "ohne dich"
 
         def keyPair = eccKeyGenerator.generateKeypair()
-        def secret = EncryptDecryptUtil.encrypt(message, keyPair.public, "ECIES")
+        def secret = EncryptDecryptService.encrypt(message, keyPair.public, "ECIES")
 
-        def unsecret = EncryptDecryptUtil.decrypt(secret, keyPair.private, "ECIES")
+        def unsecret = EncryptDecryptService.decrypt(secret, keyPair.private, "ECIES")
 
         assert message.getBytes() == unsecret
     }
