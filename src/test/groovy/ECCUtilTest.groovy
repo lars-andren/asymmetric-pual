@@ -5,7 +5,7 @@ import org.junit.Test
 /**
  * Created by andrenlars on 16/03/18.
  */
-public class ECCUtilTest extends GroovyTestCase {
+public class ECCTest extends GroovyTestCase {
 
     def eccKeyGenerator = new ECCKeyGenerator()
 

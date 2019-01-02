@@ -1,9 +1,12 @@
 package asymmetric.pual
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider
+
 import javax.crypto.Cipher
 import java.security.PrivateKey
 import java.security.PublicKey
 import java.security.SecureRandom
+import java.security.Security
 
 /**
  * Created by andrenlars on 20/03/18.
@@ -11,6 +14,8 @@ import java.security.SecureRandom
 class EncryptDecryptService {
 
     def static byte[] encrypt(String message, PublicKey kU, String cipher) {
+
+        Security.addProvider(new BouncyCastleProvider())
 
         def messageBytes = message.getBytes()
         def encryptedMessage = new byte[0]
@@ -27,6 +32,8 @@ class EncryptDecryptService {
     }
 
     def static byte[] decrypt(byte[] message, PrivateKey kR, String cipher) {
+
+        Security.addProvider(new BouncyCastleProvider())
 
         def decryptedMessage = new byte[0]
 

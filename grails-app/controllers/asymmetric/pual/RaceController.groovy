@@ -1,5 +1,10 @@
 package asymmetric.pual
 
+import grails.util.Pair
+import org.bouncycastle.jce.provider.BouncyCastleProvider
+
+import java.security.Security
+
 
 class RaceController {
 
@@ -21,7 +26,7 @@ class RaceController {
             render view: 'raceProgress'
         }
 
-        def doFullRace(Race race) {
+        def public doFullRace(Race race) {
 
             race.startDate = new Date()
 
@@ -38,20 +43,20 @@ class RaceController {
         }
 
         def raceThere(Race race) {
-            String[] firstLegRacer1 = encryptAndTime(race.racer1, race.data)
-            race.racer1time = new Integer(firstLegRacer1[0])
+            Pair<Long, byte[]> firstLegRacer1 = encryptAndTime(race.racer1, race.data)
+            race.racer1time = new Long(firstLegRacer1.aValue)
 
-            String[] firstLegRacer2 = encryptAndTime(race.racer1, race.data)
-            race.racer2time = new Integer(firstLegRacer2[0])
+            Pair<Long, byte[]> firstLegRacer2 = encryptAndTime(race.racer2, race.data)
+            race.racer2time = new Long(firstLegRacer2.aValue)
 
-            String[] encryptedArray = [(String)firstLegRacer1[1], (String)firstLegRacer2[1]]
-            return encryptedArray
+            def encryptedPair = new Pair<byte[], byte[]>(firstLegRacer1.bValue, firstLegRacer2.bValue)
+            return encryptedPair
         }
 
-        def raceBack(Race race, String[] encryptedData) {
+        def raceBack(Race race, Pair<byte[], byte[]> encryptedData) {
 
-            def racer1secondLegTime = decryptAndTime(race.racer1, encryptedData[0])
-            def racer2secondLegTime = decryptAndTime(race.racer2, encryptedData[1])
+            def racer1secondLegTime = decryptAndTime(race.racer1, encryptedData.aValue)
+            def racer2secondLegTime = decryptAndTime(race.racer2, encryptedData.bValue)
 
             race.racer1time += racer1secondLegTime;
             race.racer2time += racer2secondLegTime;
@@ -65,15 +70,17 @@ class RaceController {
             def encryptedData = EncryptDecryptService.encrypt(data, keyPair.getPublic(), racer.toString())
             def endTime = new Date()
 
-            return [endTime.time - startTime.time, encryptedData]
+            def returnPair = new Pair<Long, byte[]>(endTime.time - startTime.time, encryptedData)
+
+            return returnPair
         }
 
-        def decryptAndTime(Algorithm racer, String data) {
+        def decryptAndTime(Algorithm racer, byte[] data) {
 
             def keyPair = selectKeyPair(racer)
 
             def startTime = new Date()
-            EncryptDecryptService.decrypt(data.bytes, keyPair.getPrivate(), racer.toString())
+            EncryptDecryptService.decrypt(data, keyPair.getPrivate(), racer.toString())
             def endTime = new Date()
 
             return (endTime.time - startTime.time)

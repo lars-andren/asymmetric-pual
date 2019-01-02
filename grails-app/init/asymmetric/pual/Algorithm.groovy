@@ -5,6 +5,6 @@ package asymmetric.pual
 enum Algorithm {
 
     RSA,
-    ECC
+    ECIES
 
 }

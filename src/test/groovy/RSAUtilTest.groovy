@@ -5,7 +5,7 @@ import org.junit.Test
 /**
  * Created by andrenlars on 16/03/18.
  */
-public class RSAUtilTest extends GroovyTestCase {
+public class RSATest extends GroovyTestCase {
 
     def rsaKeyGenerator = new RSAKeyGenerator()
 

@@ -9,21 +9,29 @@ import spock.lang.Specification
 @TestFor(RaceController)
 class RaceControllerSpec extends Specification {
 
+    def race
+    def controller
+
     def setup() {
 
-        Race race = new Race()
+        race = new Race()
 
-        race.racer1 = Algorithm.ECC
+        race.racer1 = Algorithm.ECIES
         race.racer2 = Algorithm.RSA
 
+        race.data = "there must be more than black and white"
+
+        controller = new RaceController()
     }
 
     def cleanup() {
     }
 
-    void runRace() {
+    void doFullRace() {
 
-
+        def raceDone = controller.doFullRace(race)
+        expect:
+            raceDone.winner == Algorithm.ECIES
 
     }
 }
