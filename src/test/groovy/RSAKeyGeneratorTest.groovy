@@ -11,6 +11,7 @@ class RSAKeyGeneratorTest extends GroovyTestCase {
 
         def keyPair = RSAKeyGenerator.generateKeypair()
 
-        assert keyPair.private.algorithm == "RSA"
+        expect:
+            keyPair.private.algorithm == "RSA"
     }
 }

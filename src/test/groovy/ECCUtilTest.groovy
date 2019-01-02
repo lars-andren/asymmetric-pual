@@ -28,6 +28,7 @@ public class ECCUtilTest extends GroovyTestCase {
 
         def unsecret = EncryptDecryptService.decrypt(secret, keyPair.private, "ECIES")
 
-        assert message.getBytes() == unsecret
+        expect:
+            message.getBytes() == unsecret
     }
 }

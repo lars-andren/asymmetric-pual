@@ -28,6 +28,7 @@ public class RSAUtilTest extends GroovyTestCase {
 
         def unsecret = EncryptDecryptService.decrypt(secret, keyPair.private, "RSA")
 
-        assert message.getBytes() == unsecret
+        expect:
+            message.getBytes() == unsecret
     }
 }

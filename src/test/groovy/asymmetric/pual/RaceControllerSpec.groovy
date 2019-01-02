@@ -10,13 +10,20 @@ import spock.lang.Specification
 class RaceControllerSpec extends Specification {
 
     def setup() {
+
+        Race race = new Race()
+
+        race.racer1 = Algorithm.ECC
+        race.racer2 = Algorithm.RSA
+
     }
 
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void runRace() {
+
+
+
     }
 }

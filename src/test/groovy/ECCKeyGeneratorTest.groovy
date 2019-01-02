@@ -9,8 +9,9 @@ public class ECCKeyGeneratorTest extends GroovyTestCase {
     @Test
     void testGenerateKey() throws Exception {
 
-        def keyPair = ECCKeyGenerator.generateKeys()
+        def keyPair = ECCKeyGenerator.generateKeypair()
 
-        assert keyPair.private.algorithm == "ECDSA"
+        expect:
+            keyPair.private.algorithm == "ECDSA"
     }
 }
