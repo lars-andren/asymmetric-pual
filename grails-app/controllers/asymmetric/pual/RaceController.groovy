@@ -16,17 +16,9 @@ class RaceController {
             def race = new Race(params)
             race.save()
 
-            doRace(race)
+            doFullRace(race)
 
             render view: 'raceProgress'
-        }
-
-        def racing(Race race) {
-
-            def racer1 = race.getProperty("racer1")
-            def racer2 = race.getProperty("racer2")
-
-            return race
         }
 
         def doFullRace(Race race) {
@@ -35,10 +27,10 @@ class RaceController {
 
             raceBack(race, raceThere(race))
 
-            race.racer1time = racer1time
-            race.racer2time = racer2time
+            def racer1time = race.racer1time
+            def racer2time = race.racer2time
 
-            race.winner = racer1time > racer2time ? racer2 : racer1
+            race.winner = racer1time > racer2time ? race.racer2 : race.racer1
 
             race.endDate = new Date()
 
