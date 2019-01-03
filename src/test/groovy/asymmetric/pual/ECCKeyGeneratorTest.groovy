@@ -1,3 +1,5 @@
+package asymmetric.pual
+
 import asymmetric.pual.ECCKeyGenerator
 import org.junit.Test
 
