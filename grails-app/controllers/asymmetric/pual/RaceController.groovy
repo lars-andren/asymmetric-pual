@@ -15,14 +15,13 @@ class RaceController {
 
         def save() {
             def race = new Race(params)
-            race.save()
 
             doFullRace(race)
 
             render view: 'raceProgress'
         }
 
-        def public doFullRace(Race race) {
+        def doFullRace(Race race) {
 
             race.startDate = new Date()
 
@@ -34,8 +33,6 @@ class RaceController {
             race.winner = racer1time > racer2time ? race.racer2 : race.racer1
 
             race.endDate = new Date()
-
-            return race
         }
 
         def raceThere(Race race) {

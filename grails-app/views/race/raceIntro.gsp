@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
 <head>
-    <meta name="layout" content="main"/>
     <title>Asymmetric Pual</title>
 </head>
 <body>
@@ -12,7 +11,7 @@
                 Select your racers
             </h2>
 
-            <g:form controller="race" action="save">
+            <g:form controller="RaceController" action="doFullRace">
 
                 <label>Racer 1 </label><br>
                 <g:radioGroup name="racerChoice1"

@@ -19,6 +19,6 @@ class Race {
     }
 
     def String toString() {
-        return startDate + endDate + racer1 + racer2 + winner
+        return startDate + "_" + endDate + "_" + racer1 + "_" + racer2 + "_Winner: " + winner
     }
 }

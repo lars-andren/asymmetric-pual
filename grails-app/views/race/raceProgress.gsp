@@ -9,7 +9,7 @@
         <section class="row colset-2-its">
 
             <h2>
-                Start your engines, RACE!
+                Start your engines...RACE!
             </h2>
 
         </section>
