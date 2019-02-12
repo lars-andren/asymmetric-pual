@@ -29,9 +29,9 @@ class RaceControllerSpec extends Specification {
 
     void doFullRace() {
 
-        def raceDone = controller.doFullRace(race)
+        controller.doFullRace(race)
         expect:
-            raceDone.winner == Algorithm.ECIES
+            race.winner == Algorithm.RSA
 
     }
 }

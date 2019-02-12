@@ -7,6 +7,9 @@ class Race {
 
     String data
 
+    def distance = "1/4 mile"
+    def spc = "_"
+
     int racer1time
     int racer2time
 
@@ -16,9 +19,14 @@ class Race {
     Algorithm winner
 
     static constraints = {
+        startDate nullable: true
+        endDate nullable: true
+        racer1time nullable: true
+        racer2time nullable: true
+        winner nullable: true
     }
 
     def String toString() {
-        return startDate + "_" + endDate + "_" + racer1 + "_" + racer2 + "_Winner: " + winner
+        return "${startDate}${spc}${endDate}${spc}${distance}${spc}${racer1}${spc}${racer2}${spc}${winner}".toString()
     }
 }

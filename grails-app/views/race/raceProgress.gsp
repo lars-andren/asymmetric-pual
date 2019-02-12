@@ -1,19 +1,20 @@
 <!doctype html>
 <html>
 <head>
-    <meta name="layout" content="main"/>
     <title>Asymmetric Pual</title>
 </head>
 <body>
-    <div id="content" role="main">
-        <section class="row colset-2-its">
 
-            <h2>
-                Start your engines...RACE!
-            </h2>
-
-        </section>
+    <div id="raceStart" align="center">
+        <img src="@/assets/images/racestart.png">
+        <p>
+        <p>${race.racer1} is racing ${race.distance} against ${race.racer2}</p>
+        <h2>
+        Start your engines...RACE!
+        </h2>
     </div>
-
+    <div id="resultsButton" align="center">
+        <g:link controller="race" action="getResults">See the results</g:link>
+    </div>
 </body>
 </html>

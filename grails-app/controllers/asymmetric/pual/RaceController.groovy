@@ -7,15 +7,15 @@ class RaceController {
         static rsaKeypair = RSAKeyGenerator.generateKeypair()
         static eccKeypair = ECCKeyGenerator.generateKeypair()
 
+        static allowedMethods = [save: 'POST', update: 'PUT', delete: 'DELETE']
+
         def index() {
             render view: 'raceIntro'
         }
 
-        def form() {}
-
         def save() {
-            def race = new Race(params)
-
+            def Race race = new Race(params)
+            race.save(flush: true)
             doFullRace(race)
 
             render view: 'raceProgress'
@@ -33,9 +33,19 @@ class RaceController {
             race.winner = racer1time > racer2time ? race.racer2 : race.racer1
 
             race.endDate = new Date()
+
+            render (view: 'raceProgress', model: [race: race])
+        }
+
+        def getResults(Race race) {
+            println race
+            render (view: 'raceFinished', model: [race:race])
         }
 
         def raceThere(Race race) {
+
+            println race
+
             Pair<Long, byte[]> firstLegRacer1 = encryptAndTime(race.racer1, race.data)
             race.racer1time = new Long(firstLegRacer1.aValue)
 
@@ -80,7 +90,6 @@ class RaceController {
         }
 
         def selectKeyPair(Algorithm racer) {
-
             return racer == Algorithm.RSA ? rsaKeypair : eccKeypair
         }
 }
