@@ -7,8 +7,8 @@ class Race {
 
     String data
 
-    def distance = "1/4 mile"
-    def spc = "_"
+    String distance = "1/4 mile"
+    String spc = "_"
 
     int racer1time
     int racer2time

@@ -4,12 +4,15 @@
     <title>Asymmetric Pual</title>
 </head>
 <body>
-    <div id="content" role="main">
+    <div id="content" role="main" align="center">
         <section class="row colset-2-its">
 
             <h2>
                 Select your racers
             </h2>
+
+
+            <img src="http://lakefrontrow.com/gazebo/wp-content/uploads/2013/05/2-Fast-2-Furious.png">
 
             <g:form action="save">
 
@@ -29,7 +32,7 @@
 
                 <label>Data to encrypt: </label>
                 <g:textField name="data"/><br/>
-                <g:submitButton name="save" value="GO!"/>
+                <g:submitButton name="save" value="RACE!"/>
             </g:form>
 
         </section>
