@@ -15,13 +15,13 @@
                     <g:if test="${race.racer1Time > race.racer2Time}">
                         ${race.racer2Time} milliseconds
                     <p>
-                        Loser's time: ${race.racer1Time}
+                        Loser's time: ${race.racer1Time} milliseconds
                     </p>
                     </g:if>
                     <g:else>
-                        ${race.racer1Time} milliseconds
+                        ${race.racer1Time}  milliseconds
                         <p>
-                            Loser's time: ${race.racer2Time}
+                            Loser's time: ${race.racer2Time} milliseconds
                         </p>
                     </g:else>
                 </p>
