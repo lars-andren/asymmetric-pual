@@ -10,7 +10,9 @@
 
             <img src="https://images.financialexpress.com/2017/09/paul-walker-facebook.jpg">
 
-            <g:link controller="race"><h2>Let's go!<h2></h2></g:link>
+            <h2>
+                <g:link controller="race">Life's simple</g:link>
+            </h2>
     </div>
 
 </body>

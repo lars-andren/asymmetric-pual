@@ -10,8 +10,8 @@ class Race {
     String distance = "1/4 mile"
     String spc = "_"
 
-    int racer1time
-    int racer2time
+    int racer1Time
+    int racer2Time
 
     Algorithm racer1
     Algorithm racer2
@@ -21,8 +21,8 @@ class Race {
     static constraints = {
         startDate nullable: true
         endDate nullable: true
-        racer1time nullable: true
-        racer2time nullable: true
+        racer1Time nullable: true
+        racer2Time nullable: true
         winner nullable: true
     }
 

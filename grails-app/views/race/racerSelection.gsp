@@ -14,25 +14,26 @@
 
             <img src="http://lakefrontrow.com/gazebo/wp-content/uploads/2013/05/2-Fast-2-Furious.png">
 
-            <g:form action="save">
+            <g:form controller="race" action="save">
 
-                <label>Racer 1 </label><br>
+                <h2><label>Racer 1 </label><br></h2>
                 <g:radioGroup name="racer1"
                               labels="['RSA','ECC']"
-                              values="['RSA','ECIES']" >
+                              values="['RSA','ECC']" >
                     <p>${it.label} ${it.radio}</p>
                 </g:radioGroup>
 
-                <label>Racer 2 </label><br>
+                <h2><label>Racer 2 </label><br></h2>
                 <g:radioGroup name="racer2"
                               labels="['RSA','ECC']"
-                              values="['RSA','ECIES']" >
+                              values="['RSA','ECC']" >
                     <p>${it.label} ${it.radio}</p>
                 </g:radioGroup>
 
                 <label>Data to encrypt: </label>
                 <g:textField name="data"/><br/>
-                <g:submitButton name="save" value="RACE!"/>
+                <p></p>
+                <g:submitButton name="save" value="Don't look back" />
             </g:form>
 
         </section>

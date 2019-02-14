@@ -7,10 +7,8 @@ class RaceController {
         static rsaKeypair = RSAKeyGenerator.generateKeypair()
         static eccKeypair = ECCKeyGenerator.generateKeypair()
 
-       // static allowedMethods = [save: 'POST', update: 'PUT', delete: 'DELETE']
-
         def index() {
-            render view: 'sandwichOrder'
+            render view: '../sandwich/sandwichOrder'
         }
 
         def save() {
@@ -21,20 +19,16 @@ class RaceController {
             doFullRace(race)
         }
 
-        def saveSandwich() {
-            render view: 'raceSelection'
-        }
-
         def doFullRace(Race race) {
 
             race.startDate = new Date()
 
             raceBack(race, raceThere(race))
 
-            def racer1time = race.racer1time
-            def racer2time = race.racer2time
+            def racer1Time = race.racer1Time
+            def racer2Time = race.racer2Time
 
-            race.winner = racer1time > racer2time ? race.racer2 : race.racer1
+            race.winner = racer1Time > racer2Time ? race.racer2 : race.racer1
 
             race.endDate = new Date()
 
@@ -51,10 +45,10 @@ class RaceController {
             def data = checkDataInput(race.data)
 
             Pair<Long, byte[]> firstLegRacer1 = encryptAndTime(race.racer1, data)
-            race.racer1time = new Long(firstLegRacer1.aValue)
+            race.racer1Time = new Long(firstLegRacer1.aValue)
 
             Pair<Long, byte[]> firstLegRacer2 = encryptAndTime(race.racer2, data)
-            race.racer2time = new Long(firstLegRacer2.aValue)
+            race.racer2Time = new Long(firstLegRacer2.aValue)
 
             def encryptedPair = new Pair<byte[], byte[]>(firstLegRacer1.bValue, firstLegRacer2.bValue)
             return encryptedPair
@@ -65,16 +59,17 @@ class RaceController {
             def racer1secondLegTime = decryptAndTime(race.racer1, encryptedData.aValue)
             def racer2secondLegTime = decryptAndTime(race.racer2, encryptedData.bValue)
 
-            race.racer1time += racer1secondLegTime;
-            race.racer2time += racer2secondLegTime;
+            race.racer1Time += racer1secondLegTime;
+            race.racer2Time += racer2secondLegTime;
         }
 
         def encryptAndTime(Algorithm racer, String data) {
 
             def keyPair = selectKeyPair(racer)
+            String cipher = replaceCipherName(racer)
 
             def startTime = new Date()
-            def encryptedData = EncryptDecryptService.encrypt(data, keyPair.getPublic(), racer.toString())
+            def encryptedData = EncryptDecryptService.encrypt(data, keyPair.getPublic(), cipher)
             def endTime = new Date()
 
             def returnPair = new Pair<Long, byte[]>(endTime.time - startTime.time, encryptedData)
@@ -85,9 +80,10 @@ class RaceController {
         def decryptAndTime(Algorithm racer, byte[] data) {
 
             def keyPair = selectKeyPair(racer)
+            String cipher = replaceCipherName(racer)
 
             def startTime = new Date()
-            EncryptDecryptService.decrypt(data, keyPair.getPrivate(), racer.toString())
+            EncryptDecryptService.decrypt(data, keyPair.getPrivate(), cipher)
             def endTime = new Date()
 
             return (endTime.time - startTime.time)
@@ -95,6 +91,10 @@ class RaceController {
 
         def selectKeyPair(Algorithm racer) {
             return racer == Algorithm.RSA ? rsaKeypair : eccKeypair
+        }
+
+        def replaceCipherName(Algorithm racer) {
+            return racer == Algorithm.ECC ? "ECIES" : "RSA"
         }
 
         def checkDataInput(String data) {

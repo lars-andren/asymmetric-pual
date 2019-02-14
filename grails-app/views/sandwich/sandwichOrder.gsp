@@ -13,15 +13,18 @@
 
             <img src="https://i.pinimg.com/564x/e1/f8/c9/e1f8c911c79270b25b79e1601e315ff6.jpg?b=t">
 
-            <g:form action="saveSandwich">
+            <g:form controller="sandwich" action="save">
                 <p></p>
-                <label>Sandwiches</label><br>
-                <g:radioGroup name="sandwich"
+                <h3><label>Menu</label><br></h3>
+                <g:radioGroup name="topping"
                               labels="['Tuna', 'Other']"
                               values="['Tuna', 'Other']" >
                     <p>${it.label} ${it.radio}</p>
                 </g:radioGroup>
-                <g:submitButton name="saveSandwich" value="Select racers!"/>
+                <p></p>
+                <h2>
+                    <g:submitButton name="saveSandwich" value="Make your choices"/>
+                </h2>
             </g:form>
 
         </section>

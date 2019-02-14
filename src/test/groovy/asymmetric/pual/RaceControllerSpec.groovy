@@ -16,7 +16,7 @@ class RaceControllerSpec extends Specification {
 
         race = new Race()
 
-        race.racer1 = Algorithm.ECIES
+        race.racer1 = Algorithm.ECC
         race.racer2 = Algorithm.RSA
 
         race.data = "there must be more than black and white"
